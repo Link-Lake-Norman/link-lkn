@@ -1,24 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Community Hub Admin</title>
+    <title>Community Hub | Data Entry</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; max-width: 500px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background: #28a745; color: white; border: none; padding: 12px 20px; margin-top: 15px; cursor: pointer; border-radius: 4px; width: 100%; font-size: 16px; }
+        button:hover { background: #218838; }
+        button:disabled { background: #94d3a2; cursor: not-allowed; }
+        #status { margin-top: 15px; font-weight: bold; text-align: center; }
+    </style>
 </head>
 <body>
-    <h1>Community Hub Management</h1>
-    
-    <script>
-        // The script URL you generated from Google Apps Script
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyQuuO3onP3OGGDm3xgBjt5uWxwHoYOLtpZXsXeFNRoznKaVN6R7xupRwowBNJhOg1dow/exec';
 
-        // Example function to test the connection
-        async function testConnection() {
-            try {
-                const response = await fetch(scriptURL);
-                console.log("Connection successful");
-            } catch (error) {
-                console.error("Error connecting to script:", error);
-            }
-        }
-    </script>
+<div class="container">
+    <h1>Link Community Entry</h1>
+    <p>Submit data to the Google Sheet.</p>
+
+    <form id="dataForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="message">Message/Note</label>
+        <textarea id="message" name="message" rows="4" placeholder="What would you like to add?" required></textarea>
+
+        <button type="submit" id="submitBtn">Send to Sheet</button>
+    </form>
+
+    <div id="status"></div>
+</div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyQuuO3onP3OGGDm3xgBjt5uWxwHoYOLtpZXsXeFNRoznKaVN6R7xupRwowBNJhOg1dow/exec';
+    const form = document.getElementById('dataForm');
+    const status = document.getElementById('status');
+    const btn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        btn.disabled = true;
+        status.innerHTML = "Sending...";
+        status.style.color = "black";
+
+        // Prepare data for "text/plain" magic fix
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => { data[key] = value });
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // Bypasses CORS browser security
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(() => {
+            // Since mode is 'no-cors', we assume success if no error is thrown
+            status.innerHTML = "Success! Data sent to the sheet.";
+            status.style.color = "green";
+            form.reset();
+            btn.disabled = false;
+        })
+        .catch(error => {
+            status.innerHTML = "Error: " + error.message;
+            status.style.color = "red";
+            btn.disabled = false;
+        });
+    });
+</script>
+
 </body>
 </html>
+    
