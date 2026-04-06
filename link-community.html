@@ -33,7 +33,9 @@
 </div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyQuuO3onP3OGGDm3xgBjt5uWxwHoYOLtpZXsXeFNRoznKaVN6R7xupRwowBNJhOg1dow/exec';
+    // UPDATED WITH YOUR NEW DEPLOY URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxOZYTFymt80me8uLsP538b7Id4my-q5owyVwqyRe8-VBWnj0IIZ1e76qz9i9IRg3aA7Q/exec';
+    
     const form = document.getElementById('dataForm');
     const status = document.getElementById('status');
     const btn = document.getElementById('submitBtn');
@@ -44,21 +46,20 @@
         status.innerHTML = "Sending...";
         status.style.color = "black";
 
-        // Prepare data for "text/plain" magic fix
+        // Magic Fix: Convert form data to a simple object
         const formData = new FormData(form);
         const data = {};
         formData.forEach((value, key) => { data[key] = value });
 
         fetch(scriptURL, {
             method: 'POST',
-            mode: 'no-cors', // Bypasses CORS browser security
+            mode: 'no-cors', 
             headers: {
                 'Content-Type': 'text/plain;charset=utf-8',
             },
             body: JSON.stringify(data),
         })
         .then(() => {
-            // Since mode is 'no-cors', we assume success if no error is thrown
             status.innerHTML = "Success! Data sent to the sheet.";
             status.style.color = "green";
             form.reset();
@@ -74,4 +75,3 @@
 
 </body>
 </html>
-    
