@@ -2075,20 +2075,11 @@ function openDonateItem(){
   setTimeout(()=>{const el=document.getElementById('di-title');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.focus();}},400);
 }
 
-buildMQ();renderNPs();renderLB();renderEvents();renderBoard();renderAdmin();
-renderAdmin();
-  // Replace the URL below with your actual Google Script Web App URL
 buildMQ(); renderNPs(); renderLB(); renderEvents(); renderBoard(); renderAdmin();
 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzhYTUat8qse4pxmoUN8dZiAz1GrK2wyum60MafUHijSpFZUcbmrWg-AtZGT6FKrpnBfw/exec';
 
 const forms = [
-  { id: 'hours-log-form', result: 'log-result' },
-  { id: 'student-portal', result: 'student-result' },
-  { id: 'volunteer-registration', result: 'volunteer-result' },
-  { id: 'business-partnership', result: 'business-result' }
-];
-
 forms.forEach(formSetup => {
   const form = document.getElementById(formSetup.id);
   if (form) {
