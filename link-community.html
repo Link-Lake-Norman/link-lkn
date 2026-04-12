@@ -2078,8 +2078,17 @@ function openDonateItem(){
 buildMQ(); renderNPs(); renderLB(); renderEvents(); renderBoard(); renderAdmin();
 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzhYTUat8qse4pxmoUN8dZiAz1GrK2wyum60MafUHijSpFZUcbmrWg-AtZGT6FKrpnBfw/exec';
+buildMQ(); renderNPs(); renderLB(); renderEvents(); renderBoard(); renderAdmin();
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzhYTUat8qse4pxmoUN8dZiAz1GrK2wyum60MafUHijSpFZUcbmrWg-AtZGT6FKrpnBfw/exec';
 
 const forms = [
+  { id: 'hours-log-form', result: 'log-result' },
+  { id: 'student-portal', result: 'student-result' },
+  { id: 'volunteer-registration', result: 'volunteer-result' },
+  { id: 'business-partnership', result: 'business-result' }
+];
+
 forms.forEach(formSetup => {
   const form = document.getElementById(formSetup.id);
   if (form) {
