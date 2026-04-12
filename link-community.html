@@ -635,22 +635,24 @@ footer strong{color:#fff;}
     <div class="fgrid">
       <div class="fg"><label>First name *</label><input type="text" id="rsvp-first" placeholder="Jane"></div>
       <div class="fg"><label>Last name *</label><input type="text" id="rsvp-last" placeholder="Smith"></div>
-      <div class="fg"><label>Email *</label><input type="email" id="rsvp-email" placeholder="jane@org.org"></div>
-      <div class="fg"><label>Phone</label><input type="tel" id="rsvp-phone" placeholder="704-555-0000"></div>
-      <div class="fg"><label>Organization / Title</label><input type="text" id="rsvp-org" placeholder="Executive Director, My Nonprofit"></div>
-      <div class="fg"><label>Attendance</label>
-        <select id="rsvp-type">
-          <option value="">Select...</option>
-          <option>LINK LKN Member — attending free</option>
-          <option>Non-member — $25 registration</option>
-          <option>Interested in membership — tell me more</option>
-        </select>
-      </div>
-      <div class="fg full"><label>What do you hope to get from the Quarterly Connection?</label>
-        <textarea id="rsvp-goal" rows="2" placeholder="e.g., Find a partner org for our food program, share volunteer resources..."></textarea>
-      </div>
-    </div>
-    <button class="fsub" style="background:var(--gold);color:#fff;" onclick="submitRSVP()">Submit RSVP →</button>
+  <form id="student-portal" name="Students">
+        <div class="fgrid">
+          <div class="fg">
+            <label>Student Name</label>
+            <input type="text" name="name" required placeholder="Full Name">
+          </div>
+          <div class="fg">
+            <label>School</label>
+            <input type="text" name="school" required placeholder="School Name">
+          </div>
+          <div class="fg">
+            <label>Email Address</label>
+            <input type="email" name="email" required placeholder="student@email.com">
+          </div>
+        </div>
+        <button type="submit" class="fsub" style="background:var(--blue);color:#fff;">Join Student Portal</button>
+        <div id="student-result"></div>
+      </form>
     <div id="rsvp-result"></div>
   </div>
 
@@ -715,24 +717,20 @@ footer strong{color:#fff;}
         <a href="https://www.grants.gov" target="_blank" class="res-link">Grants.gov — Federal Grant Opportunities</a>
         <a href="https://www.cfcharlottes.org" target="_blank" class="res-link">Foundation for the Carolinas — Local Grants</a>
       </div>
-    </div>
-
-    <div class="res-card red">
-      <h4>Event Sponsorships &amp; In-Kind</h4>
-      <p>How to attract event sponsors, create sponsor packages, approach local businesses, manage in-kind donations, and run auctions and raffles legally in NC.</p>
-      <div class="res-links">
-        <a href="https://www.nclottery.com/charities" target="_blank" class="res-link">NC Raffle &amp; Lottery Guidelines for Nonprofits</a>
-        <a href="https://www.irs.gov/charities-non-profits/charitable-organizations/charitable-contributions-written-acknowledgments" target="_blank" class="res-link">IRS In-Kind Donation Acknowledgment Rules</a>
-        <a href="https://www.councilofnonprofits.org" target="_blank" class="res-link">NC Council of Nonprofits — Best Practices</a>
-      </div>
-    </div>
-
-    <div class="res-card">
-      <h4>Board Governance &amp; Templates</h4>
-      <p>Meeting minute templates, board policies, conflict of interest forms, officer role descriptions, term limits, quorum rules, and Robert's Rules basics — all NC-specific.</p>
-      <div class="res-links">
-        <a href="https://www.ncnonprofits.org" target="_blank" class="res-link">NC Center for Nonprofits — Member Resources</a>
-        <a href="https://www.councilofnonprofits.org/tools-resources/board-roles-and-responsibilities" target="_blank" class="res-link">Board Roles &amp; Responsibility Guide</a>
+    </div><form id="volunteer-registration" name="Adult Volunteers">
+        <div class="fgrid">
+          <div class="fg">
+            <label>Full Name</label>
+            <input type="text" name="name" required placeholder="Jane Doe">
+          </div>
+          <div class="fg">
+            <label>Email Address</label>
+            <input type="email" name="email" required placeholder="jane@email.com">
+          </div>
+        </div>
+        <button type="submit" class="fsub" style="background:var(--blue);color:#fff;">Register as Volunteer</button>
+        <div id="volunteer-result"></div>
+      </form>
         <a href="https://www.irs.gov/pub/irs-pdf/p4221pc.pdf" target="_blank" class="res-link">IRS Compliance Guide for 501(c)(3) Public Charities</a>
       </div>
     </div>
@@ -874,7 +872,20 @@ footer strong{color:#fff;}
   <div class="mem-card">
     <div class="mem-top"><div class="mem-title">Annual Membership — Nonprofits Only</div><div class="mem-price">$200<span>/year</span></div></div>
     <p style="font-size:.82rem;color:var(--gray);line-height:1.6;"><strong style="color:var(--navy);">This membership is exclusively for nonprofit organizations.</strong> It grants access to the full LINK Lake Norman concierge platform. Volunteers register free.</p>
-    <div class="perks">
+<form id="business-partnership" name="Business Partners">
+        <div class="fgrid">
+          <div class="fg">
+            <label>Business Name</label>
+            <input type="text" name="business" required placeholder="Company Name">
+          </div>
+          <div class="fg">
+            <label>Contact Email</label>
+            <input type="email" name="email" required placeholder="contact@business.com">
+          </div>
+        </div>
+        <button type="submit" class="fsub" style="background:var(--gold);color:#fff;">Submit Partnership Inquiry</button>
+        <div id="business-result"></div>
+      </form>
       <span class="pk">Auto-built member portal</span><span class="pk">Logo in scrolling banner</span><span class="pk">Directory listing</span>
       <span class="pk">Volunteer matching</span><span class="pk">4× quarterly roundtables</span><span class="pk">Event &amp; opportunity postings</span>
       <span class="pk">🔒 Member resource library</span><span class="pk">In-kind coordination</span><span class="pk">Google Sheets sync</span>
