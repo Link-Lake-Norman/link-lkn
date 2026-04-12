@@ -529,20 +529,33 @@ footer strong{color:#fff;}
     <table class="lb-table"><thead><tr><th>Rank</th><th>Volunteer</th><th>Hours</th><th>Points</th><th>Badge</th><th>School / Org</th></tr></thead>
     <tbody id="lb-body"></tbody></table>
   </div>
-  <div class="fs">
-    <h2>Log Service Hours</h2>
-    <div class="fgrid">
-      <div class="fg"><label>Your email</label><input type="email" id="log-email" placeholder="jane@email.com"></div>
-      <div class="fg"><label>Nonprofit served</label><select id="log-org"><option value="">Select org...</option></select></div>
-      <div class="fg"><label>Date of service</label><input type="date" id="log-date"></div>
-      <div class="fg"><label>Hours</label><input type="number" id="log-hrs" min=".5" max="24" step=".5" placeholder="2"></div>
-      <div class="fg full"><label>What did you do?</label><textarea id="log-desc" rows="2" placeholder="Brief description of your service..."></textarea></div>
+<div class="fs">
+      <form id="hours-log-form" name="Hours Log">
+        <h2>Log Service Hours</h2>
+        <div class="fgrid">
+          <div class="fg">
+            <label>Your email</label>
+            <input type="email" id="log-email" placeholder="jane@email.com">
+          </div>
+          <div class="fg">
+            <label>Nonprofit served</label>
+            <select id="log-org">
+              <option value="">Select org...</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Date of service</label>
+            <input type="date" id="log-date">
+          </div>
+          <div class="fg">
+            <label>Hours</label>
+            <input type="number" id="log-hrs" min=".5" max="24" step=".5" placeholder="2">
+          </div>
+        </div>
+        <button type="submit" class="fsub" style="background:var(--blue);color:#fff;">Log Hours &amp; Earn Points</button>
+        <div id="log-result"></div>
+      </form>
     </div>
-    <button class="fsub" style="background:var(--blue);color:#fff;" onclick="logHrs()">Log Hours &amp; Earn Points</button>
-    <div id="log-result"></div>
-  </div>
-</div>
-
 <!-- EVENTS -->
 <div class="panel" id="panel-events">
 
