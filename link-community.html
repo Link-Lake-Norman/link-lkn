@@ -2115,3 +2115,40 @@ forms.forEach(formSetup => {
 </script>
 </body>
 </html>
+  buildMQ(); renderNPs(); renderLB(); renderEvents(); renderBoard(); renderAdmin();
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzhYTUat8qse4pxmoUN8dZiAz1GrK2wyum60MafUHijSpFZUcbmrWg-AtZGT6FKrpnBfw/exec';
+
+const forms = [
+  { id: 'hours-log-form', result: 'log-result' },
+  { id: 'student-portal', result: 'student-result' },
+  { id: 'volunteer-registration', result: 'volunteer-result' },
+  { id: 'business-partnership', result: 'business-result' }
+];
+
+forms.forEach(formSetup => {
+  const form = document.getElementById(formSetup.id);
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const resultDiv = document.getElementById(formSetup.result);
+      resultDiv.innerHTML = '<div class="note-box">Processing... please wait.</div>';
+      
+      const formData = new FormData(form);
+      formData.append('sheetName', form.getAttribute('name'));
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+          resultDiv.innerHTML = '<div class="success-box">✅ Success! Your data has been sent to the LINK database.</div>';
+          form.reset();
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          resultDiv.innerHTML = '<div class="warn-box">❌ Error: Connection failed. Please try again.</div>';
+        });
+    });
+  }
+});
+</script>
+</body>
+</html>
