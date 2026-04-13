@@ -1736,12 +1736,31 @@ function sendSheet(data){
   if(!sheetURL)return;
   if(!data.formName&&!data.form_id)data.formName='GeneralSubmissions';
   data.form_id=data.form_id||data.formName||'GeneralSubmissions';
-  data.Timestamp=new Date().toISOString();
-  var params=new URLSearchParams();
-  Object.keys(data).forEach(function(k){params.append(k,data[k]||'');});
-  fetch(sheetURL,{method:'POST',mode:'no-cors',body:params})
-    .then(function(){console.log('Sheet updated: '+data.form_id);})
-    .catch(function(e){console.error('sendSheet error:',e);});
+  data.Timestamp=new Date().toLocaleString();
+  // Use hidden iframe + form POST to avoid CORS
+  var iframeId='_gs_iframe_'+Date.now();
+  var iframe=document.createElement('iframe');
+  iframe.name=iframeId;
+  iframe.style.display='none';
+  document.body.appendChild(iframe);
+  var form=document.createElement('form');
+  form.method='POST';
+  form.action=sheetURL;
+  form.target=iframeId;
+  form.style.display='none';
+  Object.keys(data).forEach(function(k){
+    var inp=document.createElement('input');
+    inp.type='hidden';
+    inp.name=k;
+    inp.value=data[k]||'';
+    form.appendChild(inp);
+  });
+  document.body.appendChild(form);
+  form.submit();
+  setTimeout(function(){
+    if(iframe.parentNode)iframe.parentNode.removeChild(iframe);
+    if(form.parentNode)form.parentNode.removeChild(form);
+  },5000);
 }
 
 async function callClaude(prompt,targetId){
